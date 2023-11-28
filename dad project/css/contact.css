@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&family=Oswald&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 5rem;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald';
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: montserrat;
+}
+
+::selection {
+    background-color: transparent;
+    color: transparent;
+}
+
+/* ---------------------- nav bar -----------------------------------*/
+
+header {
+    background: #0F23FF;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+
+header .logo {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li a {
+    display: inline-block;
+    color: white;
+    padding: 5px 0;
+    margin: 0 5px;
+    border: 3px solid transparent;
+    text-transform: uppercase;
+    transition: 0.2s;
+    font-family: 'Oswald';
+}
+
+.bar a:hover,
+header nav ul li a:hover,
+header nav ul li a.active {
+    border-bottom-color: rgb(0, 255, 229);
+}
+
+.hamburger {
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    margin: 5px 0;
+    background: white;
+}
+
+@media only screen and (max-width: 900px) {
+    header {
+        padding: 0 20px;
+    }
+
+    header .logo {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .hamburger {
+        display: block;
+    }
+
+    header .logo {
+        font-size: 20px;
+    }
+
+    header nav {
+        position: absolute;
+        width: 100%;
+        left: -100%;
+        top: 70px;
+        width: 100%;
+        background: #0F23FF;
+        padding: 30px;
+        transition: 0.3s;
+    }
+
+    header #nav_check:checked~nav {
+        left: 0;
+    }
+
+    header nav ul {
+        display: block;
+    }
+
+    header nav ul li a {
+        margin: 5px 0;
+    }
+}
+
+/* -------------------------------- main section ------------------------------------ */
+
+.main_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.box {
+    width: 400px;
+    height: 400px;
+    margin: 50px 10px 0px 10px;
+    box-shadow: 5px 15px 10px black;
+}
+
+.label {
+    width: 400px;
+    color: white;
+    background-color: #0F23FF;
+    padding: 10px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.form {
+    height: 350px;
+    background-color: #fbfbfb;
+}
+
+.name, .number, .address {
+    padding: 10px;
+}
+
+input, #address{
+    width: 80%;
+    float: right;
+}
+
+.submit {
+    width: 100px;
+    height: 50px;
+    color: white;
+    background-color: #0F23FF;
+    padding: 5px;
+    margin: 20px 10px 10px 0px;
+    font-size: larger;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg_img {
+    width: 430px;
+    height: 450px;
+    margin: 25px 0px 0px 10rem;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 430px;
+    height: 450px;
+}
+
+/*  -----------------------------  footer  ------------------------------ */
+
+footer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.social {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+footer .social img {
+    width: 35px;
+    margin: 0px 10px;
+    border: none;
+}
+
+.insta {
+    width: 35px;
+    height: 35px;
+    margin: 5px 10px;
+    border: none;
+    color: black;
+    background-color: white;
+}
+
+.insta:hover {
+    background-image: linear-gradient(-150deg, rgb(217, 0, 255), rgb(157, 0, 255), rgb(255, 0, 183), rgb(255, 98, 0), rgb(255, 238, 0));
+    background-clip: text;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.youtube {
+    width: 35px;
+    height: 35px;
+    margin: 5px 10px;
+    border: none;
+    color: black;
+}
+
+.youtube:hover {
+    color: rgb(223, 0, 0);
+}
+
+.facebook {
+    width: 35px;
+    height: 35px;
+    margin: 5px 10px;
+    border: none;
+    color: black;
+}
+
+.facebook:hover {
+    color: rgb(0, 60, 255);
+}
+
+.piller {
+    margin: 0px 20px;
+    font-size: 30px;
+    font-family: Impact;
+}
+
+.socialLabel {
+    width: 150px;
+    padding-top: 5px;
+    font-size: 25px;
+    font-family: Impact;
+}
+
+.up {
+    background-color: #0f23ff;
+    width: 100%;
+    padding: 20px 0px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.up .logo {
+    color: white;
+    font-weight: bolder;
+    margin-left: 40px;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #0F23FF;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.items {
+    margin: 15px 0px;
+    width: 150px;
+    text-align: center;
+}
+
+h3 {
+    color: rgb(0, 240, 216);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+li {
+    margin-bottom: 2.5px;
+    font-family: 'Chakra Petch';
+}
+
+li:hover {
+    color: rgb(0, 240, 216);
+
+}
+
+.bottom {
+    width: 100%;
+    padding: 15px 0px;
+    background-color: #0F23FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright {
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+
+    img {
+        margin-left: 0px;
+    }
+
+    /* ---------------------- footer --------------------------------------- */
+
+    .insta {
+        width: 25px;
+        height: 25px;
+    }
+
+    .youtube {
+        width: 25px;
+        height: 25px;
+    }
+
+    .facebook {
+        width: 25px;
+        height: 25px;
+    }
+
+    .piller {
+        width: 10px;
+        margin: 0px 10px;
+        font-size: 30px;
+        font-family: Impact;
+    }
+
+    .socialLabel {
+        width: 120px;
+        padding-top: 5px;
+        font-size: 20px;
+        font-family: Impact;
+    }
+}
+
+@media screen and (max-width: 660px) and (min-width:501px) {
+    /* ---------------------- footer --------------------------------------- */
+
+    .insta {
+        width: 30px;
+        height: 30px;
+    }
+
+    .youtube {
+        width: 30px;
+        height: 30px;
+    }
+
+    .facebook {
+        width: 30px;
+        height: 30px;
+    }
+}
