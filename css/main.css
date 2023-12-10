@@ -49,6 +49,7 @@ header nav ul {
 }
 
 header nav ul li a {
+    width: max-content;
     display: inline-block;
     color: white;
     padding: 5px 0;
@@ -119,176 +120,6 @@ header nav ul li a.active {
     header nav ul li a {
         margin: 5px 0;
     }
-}
-
-/*------------------------------ mani section ---------------------------------------- */
-
-.bar {
-    color: white;
-    background-color: rgb(49, 49, 49);
-    padding: 10px;
-}
-
-.bar a {
-    font-family: 'Roboto', sans-serif;
-    margin-right: 10px;
-    text-transform: uppercase;
-    border: 2px solid transparent;
-}
-
-
-.product {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 10px;
-}
-
-.product_img {
-    width: 45%;
-    min-width: 200px;
-    margin: 20px 20px 0px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.product_img #image {
-    width: 100%;
-    max-width: 500px;
-    border: 1px solid black;
-}
-
-.miniImgBox {
-    display: flex;
-}
-
-.miniImg {
-    width: 80px;
-    margin: 20px 5px 0px 5px;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-.product_title {
-    width: 50%;
-    min-width: 200px;
-}
-
-.product_description {
-    font-size: 100%;
-    font-weight: bolder;
-    font-family: 'Chakra Petch', sans-serif;
-    padding: 20px 0px;
-}
-
-hr {
-    margin: 10px 0px;
-}
-
-.price_label,
-.price,
-p {
-    font-weight: 550;
-    font-family: 'Chakra Petch';
-}
-
-.deal {
-    width: 90px;
-    color: white;
-    background-color: rgb(230, 0, 0);
-    font-family: sans-serif;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.value {
-    display: flex;
-}
-
-.sell_price {
-    width: 140px;
-    color: rgb(82, 82, 82);
-    font-size: small;
-    font-family: 'Chakra Petch';
-    text-decoration: line-through;
-}
-
-.discount {
-    width: 30%;
-    color: red;
-    text-decoration: none;
-    font-family: georgia;
-}
-
-.buy {
-    width: 150px;
-    height: 50px;
-    color: white;
-    background-color: #0F23FF;
-    padding: 5px;
-    margin: 20px 0px 10px 0px;
-    font-size: larger;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* --------------------------- More product --------------------------------*/
-
-.more {
-    width: 100%;
-    margin: 50px 0px;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    border-top-color: black;
-    border-bottom-color: black;
-}
-
-.more_label {
-    font-size: 30px;
-    margin-left: 20px;
-    font-family: 'Chakra Petch';
-}
-
-.more_container {
-    width: 100%;
-    overflow-x: auto;
-    display: flex;
-}
-
-.selfimg {
-    width: 100%;
-    min-width: 300px;
-    margin: 20px 10px;
-}
-
-.more_img {
-    width: 100%;
-    border: 1px solid rgb(101, 101, 101);
-}
-
-.price {
-    color: rgb(8, 180, 8);
-}
-
-.bar {
-    color: white;
-    background-color: rgb(49, 49, 49);
-    padding: 10px;
-}
-
-.bar a {
-    font-family: 'Roboto', sans-serif;
-    margin-right: 10px;
-    text-transform: uppercase;
-    border: 2px solid transparent;
 }
 
 /* ------------------------------body--------------------------------- */
@@ -372,6 +203,7 @@ p {
 }
 
 .order {
+    width: 60px;
     float: right;
     color: white;
     text-decoration: none;
@@ -517,6 +349,7 @@ li:hover {
 }
 
 .copyright {
+    width: 244px;
     color: white;
     font-size: 15px;
     font-weight: bolder;
