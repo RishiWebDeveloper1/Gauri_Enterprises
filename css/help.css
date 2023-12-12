@@ -18,6 +18,9 @@ html {
 
 body {
     font-family: montserrat;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 ::selection {
@@ -35,6 +38,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 50px;
+    z-index: 1;
 }
 
 header .logo {
@@ -122,87 +126,51 @@ header nav ul li a.active {
 }
 
 /* -------------------------------- main section ------------------------------------ */
-/* 
-.BG {
-    width: 100%;
-    height: 200px;
-
-}
-  
-.BGimg {
-    width: 100%;
-    height: fit-content;
-    filter: blur(1px);
-    -webkit-filter: blur(1px);
-    position: fixed;
-    z-index: -1;
-} */
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-main {
-    display: flex;
-    background-image: url(..\image\furnitur_sample.jpg);
-    justify-content: center;
-    height: 100vh;
-}
 
 .BG {
     position: relative;
     overflow: hidden;
-    width: 100%;
-    height: 100%;
 }
 
 .BGimg {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.5) blur(2px); /* Adjust brightness for better contrast with text */
+    height: auto;
+    display: block;
+    filter: brightness(50%) blur(1.3px) contrast(100%) saturate(300%);
+    z-index: -100;
 }
 
 .input {
-    width: 300px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white;
 }
 
 .help_label {
-    font-size: 24px;
+    color: white;
+    font-size: 23px;
     margin-bottom: 10px;
 }
 
 input {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    width: 300px;
+    width: 350px;
+    padding: 5px 0px 5px 20px;
+    border-radius: 10px;
+    border: 3px solid;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
 
-main {
+.main2 {
     display: flex;
     justify-content: center;
-    height: 100vh;
 }
 
 .comment-section {
     max-width: 600px;
     padding: 20px;
-    margin: 30px 0px 0px 0px;
+    margin: 30px 0px 50px 0px;
     background-color: #fff;
     box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.5), inset 50px 0px 100px rgba(255, 255, 255);
     border-radius: 8px;
@@ -244,8 +212,7 @@ main {
 /*  -----------------------------  footer  ------------------------------ */
 
 footer {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: auto;
 }
 
 .social {
@@ -271,7 +238,6 @@ footer .social img {
 
 .insta:hover {
     background-image: linear-gradient(-150deg, rgb(217, 0, 255), rgb(157, 0, 255), rgb(255, 0, 183), rgb(255, 98, 0), rgb(255, 238, 0));
-    background-clip: text;
     color: white;
     border-radius: 8px;
     padding: 5px;
@@ -374,6 +340,7 @@ li:hover {
 }
 
 .copyright {
+    width: 244px;
     color: white;
     font-size: 15px;
     font-weight: bolder;
@@ -390,8 +357,13 @@ li:hover {
         box-shadow: 5px 15px 10px rgb(0, 0, 0);
     }
 
+    .help_label {
+        font-size: 12px;
+    }
+
     input, #address{
-        width: 250px;
+        width: 150px;
+        padding: 3px 0px 5px 10px;
     }
 
     .bg_img {
@@ -443,6 +415,13 @@ li:hover {
 
 @media screen and (max-width: 660px) and (min-width:501px) {
 
+    .help_label {
+        font-size: 15px;
+    }
+
+    input, #address{
+        width: 250px;
+    }
 
     /* ---------------------- footer --------------------------------------- */
 
