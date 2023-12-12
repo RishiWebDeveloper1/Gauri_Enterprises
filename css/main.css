@@ -18,6 +18,9 @@ html {
 
 body {
     font-family: montserrat;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 ::selection {
@@ -221,8 +224,7 @@ p {
 /*  -----------------------------  footer  ------------------------------ */
 
 footer {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: auto;
 }
 
 .social {
