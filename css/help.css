@@ -145,7 +145,7 @@ body {
 
 main {
     display: flex;
-    
+    background-image: url(..\image\furnitur_sample.jpg);
     justify-content: center;
     height: 100vh;
 }
