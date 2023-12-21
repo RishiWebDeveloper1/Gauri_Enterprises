@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Example</title>
+    <script>
+        function redirectToPage() {
+            var targetPage = document.getElementById("targetPage").value;
+            // Check if the target page exists
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', targetPage, true);
+            xhr.onload = function () {
+                if (xhr.status == 404) {
+                    // Redirect to 404 page if target page is not found
+                    window.location.href = '../html/error_404.html';
+                } else {
+                    // Redirect to the target page
+                    window.location.href = targetPage;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Redirect Example</h1>
+    <p>Enter the target page URL:</p>
+    <input type="text" id="targetPage" placeholder="Enter URL">
+    <button onclick="redirectToPage()">Go to Page</button>
+</body>
+</html>
