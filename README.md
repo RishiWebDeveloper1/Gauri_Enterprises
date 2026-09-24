@@ -25,7 +25,7 @@ Hosted and configured for **[gaurienterprises.vercel.app](https://gaurienterpris
   - Sorting by price (Low to High, High to Low) and top ratings.
   - Quick View modal with multiple image gallery preview, dimensions, wood type, and warranty specifications.
 - **Direct 1-Click WhatsApp Ordering**:
-  - Pre-populates product details, customized measurements, name, and address to `+91 9321763572`.
+  - Pre-populates product details, customized measurements, name, and address to `+91 9819213473`.
 - **Pages Converted & Enhanced from `.bin`**:
   - `/` — Homepage with Hero Showcase, Live Category Bar, Product Grid, Workshop Heritage, and Client Testimonials.
   - `/products` — Full searchable and filterable furniture showroom.

@@ -40,15 +40,15 @@ export default function BrandLogo({ variant = "default", className = "" }) {
         <span
           className={`font-serif text-lg sm:text-xl font-bold tracking-wider uppercase transition-colors ${
             isLight
-              ? "text-white group-hover:text-amber-300"
-              : "text-[#0B2545] group-hover:text-[#14498C]"
+              ? "text-white group-hover:text-amber-200"
+              : "text-[#09172E] group-hover:text-[#9E7D2B]"
           }`}
         >
           Gauri Enterprises
         </span>
         <span
-          className={`text-[9px] sm:text-[10px] font-semibold tracking-[0.22em] uppercase ${
-            isLight ? "text-amber-300/90" : "text-[#B88E1F]"
+          className={`text-[9px] sm:text-[10px] font-semibold tracking-[0.24em] uppercase ${
+            isLight ? "text-amber-300/80" : "text-[#9E7D2B]"
           }`}
         >
           Premium Furniture & Interiors

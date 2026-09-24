@@ -1,21 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --brand-navy-950: #051329;
-  --brand-navy-900: #0B2545;
-  --brand-navy-800: #0E356A;
-  --brand-navy-700: #14498C;
-  --brand-navy-600: #1E60B5;
-  
-  --brand-gold-600: #B88E1F;
-  --brand-gold-500: #D4AF37;
-  --brand-gold-400: #E6C566;
-  --brand-gold-300: #F3DC9B;
-  --brand-gold-100: #FBF6E9;
-  --brand-gold-50: #FDFBF6;
+  --brand-navy-950: #050E1C;
+  --brand-navy-900: #09172E;
+  --brand-navy-800: #0E2445;
+  --brand-navy-700: #143566;
 
-  --background: #FFFFFF;
-  --foreground: #0B192C;
+  --brand-champagne-600: #9E7D2B;
+  --brand-champagne-500: #C29B38;
+  --brand-champagne-400: #D8B75F;
+  --brand-champagne-200: #EFE4C7;
+  --brand-champagne-100: #F8F4EA;
+
+  --surface-alabaster: #FAFAF8;
+  --surface-border: #E8E6E0;
+  --surface-border-light: #F0EEEA;
+
+  --foreground-primary: #0A1628;
+  --foreground-secondary: #475569;
+  --foreground-muted: #8E9BAE;
 }
 
 @theme inline {
@@ -23,14 +26,13 @@
   --color-navy-900: var(--brand-navy-900);
   --color-navy-800: var(--brand-navy-800);
   --color-navy-700: var(--brand-navy-700);
-  --color-navy-600: var(--brand-navy-600);
-  
-  --color-gold-600: var(--brand-gold-600);
-  --color-gold-500: var(--brand-gold-500);
-  --color-gold-400: var(--brand-gold-400);
-  --color-gold-300: var(--brand-gold-300);
-  --color-gold-100: var(--brand-gold-100);
-  --color-gold-50: var(--brand-gold-50);
+
+  --color-champagne-600: var(--brand-champagne-600);
+  --color-champagne-500: var(--brand-champagne-500);
+  --color-champagne-400: var(--brand-champagne-400);
+  --color-champagne-100: var(--brand-champagne-100);
+
+  --font-sans: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
@@ -38,50 +40,57 @@ html {
 }
 
 body {
-  background-color: #FAFAFB;
-  color: #1E293B;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--surface-alabaster);
+  color: var(--foreground-primary);
+  font-family: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
-/* Luxury gold text gradient */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #DFB15B 0%, #F5D77F 50%, #C59B27 100%);
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* Luxury Champagne subtle gradient */
+.text-champagne-gradient {
+  background: linear-gradient(135deg, #B58F30 0%, #D8B75F 50%, #A88326 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Subtle luxury sheen card */
-.luxury-card {
+/* Architectural clean card */
+.editorial-card {
   background: #FFFFFF;
-  border: 1px solid rgba(212, 175, 55, 0.18);
-  box-shadow: 0 10px 30px -10px rgba(11, 37, 69, 0.08);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--surface-border);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.luxury-card:hover {
-  border-color: rgba(212, 175, 55, 0.45);
-  box-shadow: 0 20px 40px -15px rgba(11, 37, 69, 0.16);
-  transform: translateY(-4px);
+.editorial-card:hover {
+  border-color: #C29B38;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -12px rgba(9, 23, 46, 0.08);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #F1F0EC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 4px;
+  background: #CBD2DC;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
 
-/* Hide scrollbar for category pills on mobile */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

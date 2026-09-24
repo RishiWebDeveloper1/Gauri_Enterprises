@@ -79,8 +79,6 @@ export const products = [
       "Spacious 6-seater modular sectional sofa designed for modern urban homes. Includes wide lounger extension, removable washable cushion covers, and brushed gold metal legs.",
     images: [
       "/images/furnitur_sample.jpg",
-      "/images/images.jpg",
-      "/images/conntact_bgImage.jpeg",
     ],
     specs: {
       dimensions: '108" L x 64" Lounger Depth x 34" H',
@@ -174,9 +172,7 @@ export const products = [
     description:
       "Natural Italian composite marble top with polished beveled edge, rested on a geometric solid wood base. Includes 6 ergonomically cushioned high-back chairs.",
     images: [
-      "/images/conntact_bgImage.jpeg",
       "/images/furnitur_sample.jpg",
-      "/images/images.jpg",
     ],
     specs: {
       dimensions: 'Table: 72" L x 38" W x 30" H',
@@ -206,9 +202,7 @@ export const products = [
     description:
       "Wall-mounted entertainment center featuring fluted charcoal wood louvers, warm perimeter LED cove lighting, concealed wire management raceway, and push-to-open cabinets.",
     images: [
-      "/images/conntact_bgImage.jpeg",
       "/images/furnitur_sample.jpg",
-      "/images/images.jpg",
     ],
     specs: {
       dimensions: 'Backdrop: 84" W x 72" H | Shelf: 72" W x 14" D',
@@ -239,8 +233,6 @@ export const products = [
       "Fortify your home entrance with architectural grandeur. Combines 35mm thick kiln-dried solid teak framing with CNC laser-cut 12-gauge steel sheet, antique brass handles, and multi-point lock readiness.",
     images: [
       "/images/furnitur_sample.jpg",
-      "/images/conntact_bgImage.jpeg",
-      "/images/images.jpg",
     ],
     specs: {
       dimensions: 'Standard: 39" W x 84" H (Custom Sizing Available)',
@@ -272,7 +264,6 @@ export const products = [
     images: [
       "/images/furnitur_sample.jpg",
       "/images/bed_sample.jpg",
-      "/images/images.jpg",
     ],
     specs: {
       dimensions: '42" W x 15" D x 28" H',
@@ -302,9 +293,7 @@ export const products = [
     description:
       "Handcrafted workstation with ample desktop space, integrated cord organizer, three lockable drawers with brass pulls, and an open bookshelf pedestal.",
     images: [
-      "/images/conntact_bgImage.jpeg",
       "/images/furnitur_sample.jpg",
-      "/images/images.jpg",
     ],
     specs: {
       dimensions: '54" W x 26" D x 30" H',

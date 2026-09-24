@@ -1,19 +1,14 @@
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import { companyInfo } from "@/data/companyInfo";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
-  display: "swap",
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -76,11 +71,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}
-    >
-      <body className="min-h-screen flex flex-col font-sans bg-[#FAFAFC] text-[#0B192C] antialiased selection:bg-[#D4AF37]/30 selection:text-[#0B2545]">
+    <html lang="en" className={`${poppins.variable} scroll-smooth`}>
+      <body className="min-h-screen flex flex-col font-sans bg-[#FAFAF8] text-[#0A1628] antialiased selection:bg-[#C29B38]/20 selection:text-[#09172E]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

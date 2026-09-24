@@ -85,7 +85,7 @@ export default function Sidebar({ isOpen, onClose }) {
         }`}
       >
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-100 bg-[#0B2545] text-white flex items-center justify-between">
+        <div className="p-4 sm:p-5 border-b border-white/10 bg-[#09172E] text-white flex items-center justify-between">
           <BrandLogo variant="light" />
           <button
             onClick={onClose}
@@ -100,7 +100,7 @@ export default function Sidebar({ isOpen, onClose }) {
         <div className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
           {/* Main Navigation */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 px-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 px-3">
               Navigation
             </p>
             <nav className="space-y-1">
@@ -112,15 +112,15 @@ export default function Sidebar({ isOpen, onClose }) {
                     key={item.name}
                     href={item.href}
                     onClick={onClose}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all ${
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-xs uppercase tracking-wider transition-all ${
                       isActive
-                        ? "bg-[#0B2545] text-amber-300 shadow-sm"
-                        : "text-slate-700 hover:bg-slate-100 hover:text-[#0B2545]"
+                        ? "bg-[#09172E] text-white shadow-xs"
+                        : "text-slate-700 hover:bg-slate-100 hover:text-[#09172E]"
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${isActive ? "text-amber-300" : "text-slate-400"}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? "text-[#D8B75F]" : "text-slate-400"}`} />
                     <span>{item.name}</span>
-                    {isActive && <ChevronRight className="w-4 h-4 ml-auto text-amber-300" />}
+                    {isActive && <ChevronRight className="w-4 h-4 ml-auto text-[#D8B75F]" />}
                   </Link>
                 );
               })}
@@ -175,13 +175,13 @@ export default function Sidebar({ isOpen, onClose }) {
         {/* Footer Actions */}
         <div className="p-4 border-t border-slate-100 bg-slate-50 space-y-3">
           <a
-            href={companyInfo.whatsapp.createUrl("Hello Gauri Enterprises, I'm reaching out from your website mobile menu.")}
+            href={companyInfo.whatsapp.createUrl("Hello Gauri Enterprises, I'm reaching out from your website.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#25D366] text-white font-semibold text-xs tracking-wide shadow-sm hover:bg-[#1EBE5D] transition-colors"
+            className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#09172E] text-white font-medium text-xs tracking-wider uppercase shadow-xs border border-[#C29B38]/40 hover:bg-[#050E1C] transition-colors"
           >
-            <MessageCircle className="w-4 h-4" />
-            Chat on WhatsApp
+            <MessageCircle className="w-4 h-4 text-emerald-400" />
+            <span>Chat on WhatsApp</span>
           </a>
 
           {/* Social Links */}

@@ -1,112 +1,79 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
+import React, { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  Search,
-  Filter,
-  SlidersHorizontal,
-  Sparkles,
-  ShoppingBag,
-  ArrowUpDown,
-} from "lucide-react";
+import { Search, ArrowUpDown, ShoppingBag } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
-import ProductModal from "@/components/ProductModal";
 import CategoryBar from "@/components/CategoryBar";
-import { products } from "@/data/products";
-import { categories } from "@/data/categories";
+import { getAllProducts } from "@/services/productService";
 
-function ProductsContent() {
+function ProductsCatalogContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "all";
-  const initialId = searchParams.get("id");
 
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");
-  const [selectedProduct, setSelectedProduct] = useState(() => {
-    if (initialId) {
-      return products.find((p) => p.id === initialId) || null;
+  const [productsList, setProductsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Scalable async data fetch (ready for future backend API)
+  useEffect(() => {
+    async function loadData() {
+      setIsLoading(true);
+      const data = await getAllProducts({
+        category: selectedCategory,
+        search: searchQuery,
+        sort: sortBy,
+      });
+      setProductsList(data);
+      setIsLoading(false);
     }
-    return null;
-  });
-
-  const filteredAndSortedProducts = useMemo(() => {
-    let result = [...products];
-
-    // Filter by category
-    if (selectedCategory !== "all") {
-      result = result.filter((p) => p.category === selectedCategory);
-    }
-
-    // Filter by search query
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(
-        (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q) ||
-          (p.tag && p.tag.toLowerCase().includes(q))
-      );
-    }
-
-    // Sort
-    if (sortBy === "price-low") {
-      result.sort((a, b) => a.price - b.price);
-    } else if (sortBy === "price-high") {
-      result.sort((a, b) => b.price - a.price);
-    } else if (sortBy === "rating") {
-      result.sort((a, b) => b.rating - a.rating);
-    }
-
-    return result;
+    loadData();
   }, [selectedCategory, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFC] pb-16">
-      {/* Top Banner */}
-      <div className="bg-[#0B2545] text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-amber-500/20">
-        <div className="max-w-7xl mx-auto text-center space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-semibold">
-            <ShoppingBag className="w-3.5 h-3.5" /> Complete Furniture Catalog
-          </div>
+    <div className="min-h-screen bg-[#FAFAF8] pb-24">
+      {/* Editorial Header */}
+      <div className="bg-[#09172E] text-white py-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center space-y-3">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#D8B75F]">
+            Workshop Catalog
+          </span>
           <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight">
-            Our Handcrafted Collections
+            Handcrafted Furniture Collection
           </h1>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto">
-            Discover custom teakwood beds, luxury sofas, dining sets, modular wardrobes, and pooja
-            mandirs crafted with precision.
+          <p className="text-slate-300 text-xs sm:text-sm max-w-lg mx-auto font-light">
+            Every piece is built to order using solid teakwood and architectural joinery.
           </p>
         </div>
       </div>
 
-      {/* Sticky Category Bar */}
+      {/* Category Bar */}
       <CategoryBar
         selectedCategory={selectedCategory}
         onSelectCategory={(id) => setSelectedCategory(id)}
       />
 
-      {/* Filter and Search Controls */}
+      {/* Filter and Search Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Search Input */}
+        <div className="bg-white p-4 rounded-2xl border border-[#E8E6E0] flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Search Box */}
           <div className="relative w-full md:w-96">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search sofas, beds, mandir, wardrobes..."
+              placeholder="Search beds, sofas, mandir, wardrobes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs focus:outline-none focus:border-[#D4AF37] focus:bg-white transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#FAFAF8] border border-[#E8E6E0] text-xs focus:outline-none focus:border-[#C29B38] transition-colors"
             />
           </div>
 
-          {/* Sort Dropdown & Product Count */}
+          {/* Product Count & Sort */}
           <div className="flex items-center justify-between w-full md:w-auto gap-4">
-            <span className="text-xs text-slate-500 font-medium">
-              Showing <strong className="text-slate-800">{filteredAndSortedProducts.length}</strong>{" "}
-              products
+            <span className="text-xs text-slate-500">
+              Showing <strong className="text-slate-800">{productsList.length}</strong> items
             </span>
 
             <div className="flex items-center gap-2">
@@ -114,7 +81,7 @@ function ProductsContent() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="text-xs px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 font-medium focus:outline-none focus:border-[#D4AF37]"
+                className="text-xs px-3 py-2 rounded-xl bg-[#FAFAF8] border border-[#E8E6E0] text-slate-700 font-medium focus:outline-none focus:border-[#C29B38]"
               >
                 <option value="default">Featured First</option>
                 <option value="price-low">Price: Low to High</option>
@@ -127,43 +94,36 @@ function ProductsContent() {
 
         {/* Product Grid */}
         <div className="mt-8">
-          {filteredAndSortedProducts.length > 0 ? (
+          {isLoading ? (
+            <div className="py-20 text-center">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-2 border-slate-300 border-t-[#09172E]" />
+            </div>
+          ) : productsList.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredAndSortedProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onQuickView={(p) => setSelectedProduct(p)}
-                />
+              {productsList.map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center bg-white rounded-2xl border border-slate-200">
+            <div className="py-20 text-center bg-white rounded-2xl border border-[#E8E6E0]">
               <ShoppingBag className="w-10 h-10 text-slate-300 mx-auto mb-3" />
               <h3 className="font-serif text-lg font-bold text-slate-700">No furniture matched</h3>
               <p className="text-xs text-slate-500 mt-1">
-                Try searching with a different term or reset your category filters.
+                Try searching with another keyword or resetting the filter.
               </p>
               <button
                 onClick={() => {
                   setSelectedCategory("all");
                   setSearchQuery("");
                 }}
-                className="mt-4 px-4 py-2 rounded-xl bg-[#0B2545] text-white text-xs font-semibold"
+                className="mt-4 px-4 py-2 rounded-xl bg-[#09172E] text-white text-xs font-semibold"
               >
-                Clear All Filters
+                Reset Filters
               </button>
             </div>
           )}
         </div>
       </div>
-
-      {/* Product Lightbox Modal */}
-      <ProductModal
-        product={selectedProduct}
-        isOpen={!!selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-      />
     </div>
   );
 }
@@ -173,11 +133,11 @@ export default function ProductsPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0B2545]" />
+          <div className="animate-spin rounded-full h-8 w-8 border-2 border-slate-300 border-t-[#09172E]" />
         </div>
       }
     >
-      <ProductsContent />
+      <ProductsCatalogContent />
     </Suspense>
   );
 }

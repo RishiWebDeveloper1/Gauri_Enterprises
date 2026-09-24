@@ -1,9 +1,11 @@
 import { companyInfo } from "@/data/companyInfo";
+import { getAllProducts } from "@/services/productService";
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = `https://${companyInfo.domain}`;
+  const products = await getAllProducts();
 
-  return [
+  const staticPages = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -35,4 +37,13 @@ export default function sitemap() {
       priority: 0.7,
     },
   ];
+
+  const productPages = products.map((p) => ({
+    url: `${baseUrl}/products/${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...productPages];
 }
