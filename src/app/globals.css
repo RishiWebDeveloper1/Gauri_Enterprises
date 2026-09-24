@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --brand-navy-950: #051329;
+  --brand-navy-900: #0B2545;
+  --brand-navy-800: #0E356A;
+  --brand-navy-700: #14498C;
+  --brand-navy-600: #1E60B5;
+  
+  --brand-gold-600: #B88E1F;
+  --brand-gold-500: #D4AF37;
+  --brand-gold-400: #E6C566;
+  --brand-gold-300: #F3DC9B;
+  --brand-gold-100: #FBF6E9;
+  --brand-gold-50: #FDFBF6;
+
+  --background: #FFFFFF;
+  --foreground: #0B192C;
+}
+
+@theme inline {
+  --color-navy-950: var(--brand-navy-950);
+  --color-navy-900: var(--brand-navy-900);
+  --color-navy-800: var(--brand-navy-800);
+  --color-navy-700: var(--brand-navy-700);
+  --color-navy-600: var(--brand-navy-600);
+  
+  --color-gold-600: var(--brand-gold-600);
+  --color-gold-500: var(--brand-gold-500);
+  --color-gold-400: var(--brand-gold-400);
+  --color-gold-300: var(--brand-gold-300);
+  --color-gold-100: var(--brand-gold-100);
+  --color-gold-50: var(--brand-gold-50);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAFAFB;
+  color: #1E293B;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Luxury gold text gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #DFB15B 0%, #F5D77F 50%, #C59B27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle luxury sheen card */
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 10px 30px -10px rgba(11, 37, 69, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 20px 40px -15px rgba(11, 37, 69, 0.16);
+  transform: translateY(-4px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Hide scrollbar for category pills on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
