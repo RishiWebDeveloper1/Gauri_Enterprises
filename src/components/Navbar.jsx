@@ -36,42 +36,12 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Quiet Utility Bar */}
-      <div className="bg-[#050E1C] text-slate-300 text-[11px] py-2 px-4 sm:px-8 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-[#D8B75F] font-semibold uppercase tracking-widest text-[10px]">
-              Bespoke Workshop
-            </span>
-            <span className="text-slate-500 hidden sm:inline">•</span>
-            <span className="text-slate-400 hidden sm:inline">
-              Custom teakwood furniture & architectural interiors
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4 text-slate-400">
-            <a
-              href={`tel:${companyInfo.phoneRaw}`}
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <PhoneCall className="w-3 h-3 text-[#D8B75F]" />
-              <span>{companyInfo.phone}</span>
-            </a>
-            <span className="text-slate-600 hidden md:inline">|</span>
-            <span className="hidden md:inline text-slate-300 font-light">
-              Pan-India In-Home Setup
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Main Luxury Header */}
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
+        className={`sticky top-0 z-40 w-full transition-all duration-300 ${isScrolled
             ? "bg-white/95 backdrop-blur-md shadow-xs border-b border-[#E8E6E0] py-3"
             : "bg-white border-b border-[#E8E6E0] py-4"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
@@ -85,11 +55,10 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-xs uppercase tracking-widest font-semibold transition-colors py-1 ${
-                    isActive
+                  className={`text-xs uppercase tracking-widest font-semibold transition-colors py-1 ${isActive
                       ? "text-[#09172E] border-b-2 border-[#C29B38]"
                       : "text-slate-600 hover:text-[#09172E]"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -99,14 +68,6 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/products"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700 hover:text-[#09172E] transition-colors"
-              title="Catalog"
-            >
-              <ShoppingBag className="w-3.5 h-3.5 text-[#C29B38]" />
-              <span>Catalog</span>
-            </Link>
 
             {/* WhatsApp Quick Action */}
             <a

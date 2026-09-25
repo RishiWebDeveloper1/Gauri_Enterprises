@@ -1,130 +1,171 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Sparkles,
   ArrowRight,
-  ShieldCheck,
-  Truck,
-  Layers,
-  PhoneCall,
   MessageCircle,
   Star,
-  ChevronRight,
-  Building2,
-  SlidersHorizontal,
 } from "lucide-react";
-import CategoryBar from "@/components/CategoryBar";
-import ProductCard from "@/components/ProductCard";
+import HorizontalCategoryRow from "@/components/HorizontalCategoryRow";
 import { products } from "@/data/products";
+import { categories } from "@/data/categories";
 import { companyInfo } from "@/data/companyInfo";
+
+// Smooth Animated Number Counter Component
+function AnimatedCounter({ value, suffix = "", duration = 1600 }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    let animationFrameId;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const elapsed = timestamp - startTimestamp;
+      const progress = Math.min(elapsed / duration, 1);
+      // Smooth cubic ease-out
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeProgress * value));
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(step);
+      } else {
+        setCount(value);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(step);
+    return () => {
+      if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [value, duration]);
+
+  return (
+    <span className="font-numeric">
+      {count.toLocaleString("en-IN")}
+      {suffix}
+    </span>
+  );
+}
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const filteredProducts =
-    selectedCategory === "all"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
-
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
       {/* ================= HERO SECTION ================= */}
-      <section className="relative bg-[#09172E] text-white overflow-hidden py-16 sm:py-24 lg:py-28">
-        {/* Subtle architectural ambient gradient */}
-        <div className="absolute inset-0 bg-radial from-[#143566]/20 via-transparent to-transparent pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section className="relative bg-[#09172E] text-white min-h-[calc(100dvh-73px)] flex items-center py-12 sm:py-16 lg:py-10 border-b border-[#E8E6E0]/10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 items-center">
             {/* Left: Refined Headline & Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-amber-300/30 text-[#D8B75F] text-[11px] font-semibold tracking-widest uppercase">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Premium Teakwood Furniture & Interiors</span>
+              <div>
+                <p className="animate-hero-fade-up text-xs font-semibold uppercase tracking-[0.2em] text-[#C29B38] mb-3">
+                  Direct Workshop Craftsmanship • Mumbai
+                </p>
+                <h1 className="animate-hero-fade-up-1 font-serif text-3xl sm:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] font-bold text-white tracking-tight leading-[1.14]">
+                  Solid Wood Furniture, <br className="hidden sm:inline" />
+                  <span className="font-normal italic text-[#D8B75F]">Crafted for Your Home.</span>
+                </h1>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                Solid Wood Craftsmanship,{" "}
-                <span className="text-champagne-gradient font-normal italic">
-                  Made for Your Home.
-                </span>
-              </h1>
-
-              <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
-                Tailored teakwood beds, luxury sofas, wooden mandirs, and custom wardrobes made in our
-                own workshop and delivered directly to your doorstep.
+              <p className="animate-hero-fade-up-2 text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                Tailored teakwood beds, luxury sofas, wooden mandirs, and custom home interior carpentry — built to your room dimensions directly in our workshop with zero retail markups.
               </p>
 
-              {/* Clean CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+              {/* Standard Furniture CTA Buttons with Micro-Animations */}
+              <div className="animate-hero-fade-up-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1">
                 <Link
                   href="/products"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white text-[#09172E] font-medium text-xs tracking-wider uppercase shadow-md hover:bg-slate-100 transition-all active:scale-98"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:py-4 rounded-xl btn-gold-shimmer text-[#09172E] font-bold text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 group"
                 >
-                  <span>Explore Furniture</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Explore Collection</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
 
                 <a
                   href={companyInfo.whatsapp.createUrl(
-                    "Hello Gauri Enterprises, I would like to ask about furniture and home interiors."
+                    "Hello Gauri Enterprises, I would like to ask about custom furniture and home interiors."
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-xs tracking-wider uppercase border border-white/20 transition-all active:scale-98"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-xs uppercase tracking-wider border border-white/20 hover:border-emerald-400/40 transition-all active:scale-95 group"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  <MessageCircle className="w-4 h-4 text-emerald-400 group-hover:scale-115 transition-transform duration-200" />
                   <span>WhatsApp Us</span>
                 </a>
               </div>
 
-              {/* Quiet Social Proof */}
-              <div className="pt-8 border-t border-white/10 grid grid-cols-3 gap-6 text-center lg:text-left">
+              {/* Animated Numbers Social Proof Row */}
+              <div className="animate-hero-fade-up-4 pt-6 sm:pt-8 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-6 text-center lg:text-left">
                 <div>
-                  <p className="font-serif text-2xl sm:text-3xl font-bold text-[#D8B75F]">25+</p>
-                  <p className="text-[11px] text-slate-400 tracking-wide uppercase mt-0.5">Years of Joinery</p>
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                    <AnimatedCounter value={25} suffix="+" />
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-wider mt-1">Years Joinery</p>
                 </div>
                 <div>
-                  <p className="font-serif text-2xl sm:text-3xl font-bold text-[#D8B75F]">3,500+</p>
-                  <p className="text-[11px] text-slate-400 tracking-wide uppercase mt-0.5">Homes Furnished</p>
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                    <AnimatedCounter value={3500} suffix="+" />
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-wider mt-1">Homes Furnished</p>
                 </div>
                 <div>
-                  <p className="font-serif text-2xl sm:text-3xl font-bold text-[#D8B75F]">10-Year</p>
-                  <p className="text-[11px] text-slate-400 tracking-wide uppercase mt-0.5">Wood Warranty</p>
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                    <AnimatedCounter value={10} suffix="-Year" />
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase tracking-wider mt-1">Wood Warranty</p>
                 </div>
               </div>
             </div>
 
-            {/* Right: Featured Piece Showcase */}
-            <div className="lg:col-span-5">
+            {/* Right: Flagship Furniture Presentation & Placement */}
+            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end animate-hero-image">
               <Link
                 href="/products/sofa-royal-chesterfield"
-                className="group relative block rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-[#0E2445] aspect-4/3 sm:aspect-16/11"
+                className="group relative block w-full max-w-lg lg:max-w-none rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-[#0E2445] aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] transition-all"
               >
                 <Image
                   src="/images/furnitur_sample.jpg"
-                  alt="Royal Chesterfield Sofa"
+                  alt="Royal Chesterfield Sofa in Teak Wood"
                   fill
                   priority
-                  className="object-cover group-hover:scale-103 transition-transform duration-700"
+                  className="object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#09172E] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#09172E]/95 via-[#09172E]/25 to-transparent opacity-90" />
 
-                <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#09172E]/90 backdrop-blur-md border border-white/10 flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#D8B75F]">
+                {/* Top Badges */}
+                <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#09172E]/90 backdrop-blur-md border border-white/15 text-white shadow-lg flex items-center gap-2">
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <span className="font-numeric font-bold text-xs sm:text-sm text-white">4.9</span>
+                  <span className="text-white/30">•</span>
+                  <span className="text-[11px] text-slate-300 font-medium hidden xs:inline">3,500+ Homes</span>
+                </div>
+
+                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 backdrop-blur-md text-[10px] sm:text-[11px] font-semibold tracking-wide flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>100% Solid Teak</span>
+                </div>
+
+                {/* Floating Product Card */}
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#09172E]/92 backdrop-blur-md border border-white/15 flex items-center justify-between gap-3 shadow-xl group-hover:border-[#C29B38]/50 transition-all">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#C29B38] block truncate">
                       Featured Masterpiece
                     </span>
-                    <h3 className="text-sm font-serif font-bold text-white">
+                    <h3 className="text-xs sm:text-sm md:text-base font-serif font-bold text-white truncate mt-0.5">
                       Royal Chesterfield Velvet Sofa
                     </h3>
-                    <p className="text-xs text-slate-300">₹38,000</p>
+                    <p className="font-price text-xs sm:text-sm font-bold text-slate-200 mt-0.5">
+                      ₹38,000 <span className="font-numeric font-normal text-slate-400 line-through ml-1.5 text-[11px] sm:text-xs">MRP ₹48,000</span>
+                    </p>
                   </div>
-                  <span className="px-3 py-1.5 rounded-lg bg-white/10 text-white text-xs font-medium flex items-center gap-1 group-hover:bg-white group-hover:text-[#09172E] transition-colors">
+
+                  <span className="px-3.5 py-2 rounded-xl bg-white text-[#09172E] text-xs font-bold flex items-center gap-1 shrink-0 group-hover:bg-[#C29B38] transition-colors shadow-sm">
                     <span>View</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </Link>
@@ -133,94 +174,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= CATEGORY BROWSER BAR ================= */}
-      <CategoryBar
-        selectedCategory={selectedCategory}
-        onSelectCategory={(id) => setSelectedCategory(id)}
-      />
-
-      {/* ================= EDITORIAL CATALOG GRID ================= */}
-      <section className="py-14 sm:py-20">
+      {/* ================= CURATED HORIZONTAL PRODUCT SHOWCASE ================= */}
+      <section className="py-4 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-[#E8E6E0]">
-            <div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#9E7D2B]">
-                Curated Collection
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#09172E] mt-1">
-                Handcrafted Living & Bedroom Pieces
-              </h2>
-            </div>
 
-            <Link
-              href="/products"
-              className="text-xs font-semibold text-[#09172E] hover:text-[#9E7D2B] transition-colors inline-flex items-center gap-1"
-            >
-              <span>Explore All {products.length} Designs</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+          {/* Horizontal Category Rows */}
+          {selectedCategory === "all" ? (
+            <>
+              {/* Featured Showcase Categories */}
+              {["sofa", "bed", "mandir", "dining"].map((catId) => {
+                const catObj = categories.find((c) => c.id === catId);
+                const catProducts = products.filter((p) => p.category === catId);
+                if (!catObj || catProducts.length === 0) return null;
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
+                return (
+                  <HorizontalCategoryRow
+                    key={catId}
+                    category={catObj}
+                    products={catProducts}
+                    totalCount={catProducts.length}
+                  />
+                );
+              })}
+            </>
+          ) : (
+            <>
+              {(() => {
+                const catObj =
+                  categories.find((c) => c.id === selectedCategory) || {
+                    id: selectedCategory,
+                    name: selectedCategory.toUpperCase(),
+                    description: "Handcrafted direct workshop pieces.",
+                  };
+                const catProducts = products.filter(
+                  (p) => p.category === selectedCategory
+                );
 
-      {/* ================= WORKSHOP EXCELLENCE ================= */}
-      <section className="py-16 bg-white border-y border-[#E8E6E0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center mb-12">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#9E7D2B]">
-              The Gauri Heritage
-            </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#09172E] mt-1">
-              Craftsmanship Built Without Compromise
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="space-y-3 p-6 rounded-2xl bg-[#FAFAF8] border border-[#E8E6E0]">
-              <div className="w-10 h-10 rounded-xl bg-white text-[#9E7D2B] flex items-center justify-center border border-[#E8E6E0]">
-                <Layers className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base font-bold text-[#09172E]">
-                Kiln-Seasoned Teak Timber
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Chemically treated against borer insects and kiln-dried to less than 12% moisture
-                content for zero warping.
-              </p>
-            </div>
-
-            <div className="space-y-3 p-6 rounded-2xl bg-[#FAFAF8] border border-[#E8E6E0]">
-              <div className="w-10 h-10 rounded-xl bg-white text-[#9E7D2B] flex items-center justify-center border border-[#E8E6E0]">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base font-bold text-[#09172E]">
-                Workshop Direct Transparency
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Direct manufacturing prices without showroom distributor markups. Homeowners are
-                welcome to inspect production in person.
-              </p>
-            </div>
-
-            <div className="space-y-3 p-6 rounded-2xl bg-[#FAFAF8] border border-[#E8E6E0]">
-              <div className="w-10 h-10 rounded-xl bg-white text-[#9E7D2B] flex items-center justify-center border border-[#E8E6E0]">
-                <SlidersHorizontal className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base font-bold text-[#09172E]">
-                Made-to-Measure Customization
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Every bed frame, sofa length, and wardrobe depth is crafted specifically for your room
-                dimensions.
-              </p>
-            </div>
-          </div>
+                return (
+                  <HorizontalCategoryRow
+                    key={selectedCategory}
+                    category={catObj}
+                    products={catProducts}
+                    totalCount={catProducts.length}
+                  />
+                );
+              })()}
+            </>
+          )}
         </div>
       </section>
 
@@ -256,7 +256,7 @@ export default function Home() {
                 href={`tel:${companyInfo.phoneRaw}`}
                 className="py-3 px-6 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-xs tracking-wider uppercase text-center border border-white/20 transition-colors"
               >
-                Call Us: {companyInfo.phone}
+                Call Us: <span className="font-numeric font-semibold">{companyInfo.phone}</span>
               </a>
             </div>
           </div>

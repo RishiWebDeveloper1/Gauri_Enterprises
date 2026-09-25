@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="editorial-card group rounded-2xl overflow-hidden flex flex-col justify-between block cursor-pointer"
+      className="editorial-card group rounded-2xl overflow-hidden flex flex-col justify-between block cursor-pointer h-full"
     >
       {/* Product Image Stage */}
       <div className="relative aspect-4/3 sm:aspect-16/11 bg-[#F4F3EF] overflow-hidden">
@@ -53,7 +53,7 @@ export default function ProductCard({ product }) {
             </span>
             <div className="flex items-center gap-1 font-medium text-slate-700">
               <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-              <span>{product.rating}</span>
+              <span className="font-numeric font-semibold">{product.rating}</span>
             </div>
           </div>
 
@@ -64,16 +64,23 @@ export default function ProductCard({ product }) {
           <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
+
+          {product.specs?.woodType && (
+            <div className="mt-2.5 pt-2 border-t border-[#F5F4F0] text-[11px] text-slate-600 flex items-center gap-1.5 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C29B38] shrink-0" />
+              <span className="truncate">{product.specs.woodType}</span>
+            </div>
+          )}
         </div>
 
         {/* Pricing & Subtle Link */}
         <div className="pt-3 border-t border-[#F0EEEA] flex items-center justify-between">
           <div className="flex items-baseline gap-2">
-            <span className="font-serif text-base sm:text-lg font-bold text-[#09172E]">
+            <span className="font-price text-base sm:text-lg font-bold text-[#09172E] tracking-tight">
               {formattedPrice}
             </span>
             {product.originalPrice > product.price && (
-              <span className="text-xs text-slate-400 line-through">
+              <span className="font-numeric text-xs text-slate-400 line-through">
                 {formattedOriginalPrice}
               </span>
             )}

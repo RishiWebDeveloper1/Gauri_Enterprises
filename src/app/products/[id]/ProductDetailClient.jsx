@@ -158,17 +158,17 @@ Please share the fabric shade catalog and delivery schedule.`;
                 />
               ))}
             </div>
-            <span className="font-semibold text-slate-800">{product.rating}</span>
-            <span className="text-slate-400">({product.reviewCount} verified homeowners)</span>
+            <span className="font-numeric font-semibold text-slate-800">{product.rating}</span>
+            <span className="text-slate-400">(<span className="font-numeric font-medium">{product.reviewCount}</span> verified homeowners)</span>
           </div>
 
           {/* Pricing */}
           <div className="mt-4 pt-4 border-t border-[#E8E6E0] flex items-baseline gap-3">
-            <span className="font-serif text-2xl sm:text-3xl font-extrabold text-[#09172E]">
+            <span className="font-price text-2xl sm:text-3xl font-bold text-[#09172E] tracking-tight">
               {formattedPrice}
             </span>
             {product.originalPrice > product.price && (
-              <span className="text-sm text-slate-400 line-through">
+              <span className="font-numeric text-sm text-slate-400 line-through">
                 MRP {formattedOriginalPrice}
               </span>
             )}
@@ -218,7 +218,7 @@ Please share the fabric shade catalog and delivery schedule.`;
             {product.specs?.dimensions && (
               <div className="p-3 flex justify-between gap-4">
                 <span className="text-slate-500">Dimensions</span>
-                <span className="font-semibold text-slate-800 text-right">{product.specs.dimensions}</span>
+                <span className="font-numeric font-semibold text-slate-800 text-right">{product.specs.dimensions}</span>
               </div>
             )}
             {product.specs?.woodType && (
@@ -236,7 +236,7 @@ Please share the fabric shade catalog and delivery schedule.`;
             {product.specs?.warranty && (
               <div className="p-3 flex justify-between gap-4">
                 <span className="text-slate-500">Warranty</span>
-                <span className="font-semibold text-emerald-700 text-right">{product.specs.warranty}</span>
+                <span className="font-numeric font-semibold text-emerald-700 text-right">{product.specs.warranty}</span>
               </div>
             )}
             {product.specs?.delivery && (
@@ -277,7 +277,7 @@ Please share the fabric shade catalog and delivery schedule.`;
             className="w-full py-3 px-6 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs tracking-wide flex items-center justify-center gap-2 border border-[#E8E6E0] transition-colors"
           >
             <PhoneCall className="w-3.5 h-3.5 text-[#C29B38]" />
-            <span>Call Us: {companyInfo.phone}</span>
+            <span>Call Us: <span className="font-numeric font-semibold">{companyInfo.phone}</span></span>
           </a>
         </div>
       </div>

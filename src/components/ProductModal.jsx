@@ -140,7 +140,7 @@ ${customNotes ? `*Customization Request:* ${customNotes}` : ""}
                   className="object-cover object-center"
                 />
                 {product.discount && (
-                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-bold shadow-md">
+                  <div className="font-numeric absolute top-3 right-3 px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-bold shadow-md tracking-tight">
                     {product.discount}
                   </div>
                 )}
@@ -192,15 +192,15 @@ ${customNotes ? `*Customization Request:* ${customNotes}` : ""}
 
                 {/* Price Display */}
                 <div className="mt-3 flex items-baseline gap-3">
-                  <span className="text-2xl sm:text-3xl font-extrabold text-[#0B2545]">
+                  <span className="font-price text-2xl sm:text-3xl font-bold text-[#0B2545] tracking-tight">
                     {formattedPrice}
                   </span>
                   {product.originalPrice > product.price && (
-                    <span className="text-base text-slate-400 line-through">
+                    <span className="font-numeric text-base text-slate-400 line-through">
                       MRP {formattedOriginalPrice}
                     </span>
                   )}
-                  <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-xs font-bold">
+                  <span className="font-numeric px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-xs font-bold">
                     Save {(product.originalPrice - product.price).toLocaleString("en-IN")}
                   </span>
                 </div>
@@ -215,7 +215,7 @@ ${customNotes ? `*Customization Request:* ${customNotes}` : ""}
                     <div className="flex items-start gap-2">
                       <Ruler className="w-4 h-4 text-[#B88E1F] shrink-0 mt-0.5" />
                       <span className="font-semibold text-slate-800">Dimensions:</span>
-                      <span className="text-slate-600">{product.specs.dimensions}</span>
+                      <span className="font-numeric font-medium text-slate-700">{product.specs.dimensions}</span>
                     </div>
                   )}
                   {product.specs?.woodType && (
@@ -229,7 +229,7 @@ ${customNotes ? `*Customization Request:* ${customNotes}` : ""}
                     <div className="flex items-start gap-2">
                       <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <span className="font-semibold text-slate-800">Warranty:</span>
-                      <span className="text-slate-600">{product.specs.warranty}</span>
+                      <span className="font-numeric font-medium text-slate-700">{product.specs.warranty}</span>
                     </div>
                   )}
                   {product.specs?.delivery && (

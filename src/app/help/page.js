@@ -199,7 +199,7 @@ export default function HelpPage() {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-xs uppercase tracking-wider border border-white/20 transition-colors"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#D8B75F]" />
-              <span>Call Us: {companyInfo.phone}</span>
+              <span>Call Us: <span className="font-numeric font-medium">{companyInfo.phone}</span></span>
             </a>
           </div>
         </div>

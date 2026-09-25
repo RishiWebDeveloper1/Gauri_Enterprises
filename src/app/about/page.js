@@ -19,6 +19,14 @@ export const metadata = {
   title: "About Us | Heritage & Leadership",
   description:
     "Learn about Gauri Enterprises, our inspirational leadership, decades of woodcraft experience, and commitment to custom luxury interiors.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us | Gauri Enterprises",
+    description: "Learn about Gauri Enterprises, our master craftsmanship and heritage.",
+    url: "https://gaurienterprises.vercel.app/about",
+  },
 };
 
 export default function AboutPage() {
@@ -106,7 +114,7 @@ export default function AboutPage() {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FAFAF8] hover:bg-slate-100 text-slate-800 text-xs font-medium uppercase tracking-wider border border-[#E8E6E0] transition-all"
                 >
                   <PhoneCall className="w-3.5 h-3.5 text-[#C29B38]" />
-                  <span>Call {companyInfo.phone}</span>
+                  <span>Call <span className="font-numeric font-medium">{companyInfo.phone}</span></span>
                 </a>
               </div>
             </div>

@@ -199,7 +199,7 @@ export default function ContactPage() {
                       <p className="font-semibold text-white">Direct Line</p>
                       <a
                         href={`tel:${companyInfo.phoneRaw}`}
-                        className="text-[#D8B75F] hover:underline font-medium block mt-0.5"
+                        className="text-[#D8B75F] hover:underline font-numeric font-medium block mt-0.5"
                       >
                         {companyInfo.phone}
                       </a>

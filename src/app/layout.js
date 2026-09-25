@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,6 +9,13 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+const inter = Inter({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -63,15 +70,80 @@ export const metadata = {
     images: ["/images/logo.png"],
   },
   icons: {
-    icon: "/images/Logo_favicon3.png",
-    shortcut: "/images/Logo_favicon.png",
-    apple: "/images/Logo_favicon.png",
+    icon: "/images/favicon.png",
+    shortcut: "/images/favicon.png",
+    apple: "/images/logo.png",
   },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FurnitureStore",
+      "@id": "https://gaurienterprises.vercel.app/#organization",
+      name: "Gauri Enterprises",
+      alternateName: "Gauri Enterprises Premium Furniture & Interiors",
+      url: "https://gaurienterprises.vercel.app/",
+      logo: "https://gaurienterprises.vercel.app/images/logo.png",
+      image: "https://gaurienterprises.vercel.app/images/logo.png",
+      description: companyInfo.shortDesc,
+      telephone: companyInfo.phone,
+      priceRange: "₹₹₹",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: companyInfo.address,
+        addressLocality: "Mumbai",
+        addressRegion: "Maharashtra",
+        addressCountry: "IN",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "19.0760",
+        longitude: "72.8777",
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          opens: "09:30",
+          closes: "20:30",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Sunday"],
+          opens: "10:00",
+          closes: "18:00",
+        },
+      ],
+      sameAs: [
+        companyInfo.socials.instagram,
+        companyInfo.socials.youtube,
+        companyInfo.socials.facebook,
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://gaurienterprises.vercel.app/#website",
+      url: "https://gaurienterprises.vercel.app/",
+      name: "Gauri Enterprises",
+      description: "Premium Furniture & Bespoke Interiors",
+      publisher: {
+        "@id": "https://gaurienterprises.vercel.app/#organization",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.variable} scroll-smooth`}>
+    <html lang="en" className={`${poppins.variable} ${inter.variable} scroll-smooth`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#FAFAF8] text-[#0A1628] antialiased selection:bg-[#C29B38]/20 selection:text-[#09172E]">
         <Navbar />
         <main className="flex-1">{children}</main>

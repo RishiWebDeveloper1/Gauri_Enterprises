@@ -165,7 +165,7 @@ export default function Sidebar({ isOpen, onClose }) {
             </div>
             <div className="flex items-center gap-2.5">
               <PhoneCall className="w-4 h-4 text-[#D4AF37] shrink-0" />
-              <a href={`tel:${companyInfo.phoneRaw}`} className="font-semibold text-slate-800 hover:underline">
+              <a href={`tel:${companyInfo.phoneRaw}`} className="font-numeric font-semibold text-slate-800 hover:underline">
                 {companyInfo.phone}
               </a>
             </div>

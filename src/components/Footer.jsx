@@ -25,59 +25,6 @@ export default function Footer() {
       {/* Decorative gradient overlay */}
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-60" />
 
-      {/* Trust Badges Banner */}
-      <div className="border-b border-white/10 bg-[#0B2545]/60 py-6 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center sm:text-left">
-          <div className="flex items-center justify-center sm:justify-start gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-400/10 text-amber-400">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-white uppercase tracking-wider">
-                10-Year Warranty
-              </p>
-              <p className="text-[11px] text-slate-400">Seasoned wood & termite proof</p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center sm:justify-start gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-400/10 text-amber-400">
-              <Truck className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-white uppercase tracking-wider">
-                Safe Delivery
-              </p>
-              <p className="text-[11px] text-slate-400">Crated packaging & in-home setup</p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center sm:justify-start gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-400/10 text-amber-400">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-white uppercase tracking-wider">
-                100% Custom Made
-              </p>
-              <p className="text-[11px] text-slate-400">Tailored to your room dimensions</p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center sm:justify-start gap-3">
-            <div className="p-2.5 rounded-xl bg-emerald-400/10 text-emerald-400">
-              <MessageCircle className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-white uppercase tracking-wider">
-                Direct Workshop Price
-              </p>
-              <p className="text-[11px] text-slate-400">No middleman commission</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
@@ -253,7 +200,7 @@ export default function Footer() {
                 <PhoneCall className="w-4 h-4 text-amber-400 shrink-0" />
                 <a
                   href={`tel:${companyInfo.phoneRaw}`}
-                  className="hover:text-amber-300 font-semibold"
+                  className="hover:text-amber-300 font-numeric font-semibold"
                 >
                   {companyInfo.phone}
                 </a>
@@ -279,7 +226,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/10 py-5 px-4 text-center text-xs text-slate-400 bg-[#030c1a]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p>© {currentYear} Gauri Enterprises. All Rights Reserved.</p>
+          <p>© <span className="font-numeric">{currentYear}</span> Gauri Enterprises. All Rights Reserved.</p>
           <div className="flex items-center gap-4 text-slate-400">
             <Link href="/about" className="hover:text-amber-300 transition-colors">
               About

@@ -17,6 +17,11 @@ function ProductsCatalogContent() {
   const [productsList, setProductsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Sync state if URL query param changes
+  useEffect(() => {
+    setSelectedCategory(initialCategory);
+  }, [initialCategory]);
+
   // Scalable async data fetch (ready for future backend API)
   useEffect(() => {
     async function loadData() {
@@ -34,20 +39,6 @@ function ProductsCatalogContent() {
 
   return (
     <div className="min-h-screen bg-[#FAFAF8] pb-24">
-      {/* Editorial Header */}
-      <div className="bg-[#09172E] text-white py-14 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-3">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#D8B75F]">
-            Workshop Catalog
-          </span>
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight">
-            Handcrafted Furniture Collection
-          </h1>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-lg mx-auto font-light">
-            Every piece is built to order using solid teakwood and architectural joinery.
-          </p>
-        </div>
-      </div>
 
       {/* Category Bar */}
       <CategoryBar
@@ -73,7 +64,7 @@ function ProductsCatalogContent() {
           {/* Product Count & Sort */}
           <div className="flex items-center justify-between w-full md:w-auto gap-4">
             <span className="text-xs text-slate-500">
-              Showing <strong className="text-slate-800">{productsList.length}</strong> items
+              Showing <strong className="font-numeric font-bold text-slate-800">{productsList.length}</strong> items
             </span>
 
             <div className="flex items-center gap-2">

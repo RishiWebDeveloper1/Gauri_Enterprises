@@ -44,6 +44,9 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    alternates: {
+      canonical: `/products/${product.id}`,
+    },
     openGraph: {
       title,
       description,
@@ -76,8 +79,41 @@ export default async function ProductDetailPage({ params }) {
 
   const relatedProducts = await getRelatedProducts(product.category, product.id, 4);
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: product.images?.map((img) => `https://${companyInfo.domain}${img}`) || [],
+    description: product.description,
+    brand: {
+      "@type": "Brand",
+      name: "Gauri Enterprises",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://${companyInfo.domain}/products/${product.id}`,
+      priceCurrency: "INR",
+      price: product.price,
+      itemCondition: "https://schema.org/NewCondition",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "Gauri Enterprises",
+      },
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount || 15,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFAF8] pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       {/* Breadcrumb Navigation Bar */}
       <div className="border-b border-[#E8E6E0] bg-white py-3 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-slate-500 overflow-x-auto no-scrollbar">
@@ -201,7 +237,7 @@ export default async function ProductDetailPage({ params }) {
                       </h4>
                     </div>
                     <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                      <span className="font-serif font-bold text-sm text-[#09172E]">
+                      <span className="font-price font-bold text-sm sm:text-base text-[#09172E] tracking-tight">
                         {relFormatted}
                       </span>
                       <span className="text-[11px] font-semibold text-[#C29B38]">Explore →</span>
